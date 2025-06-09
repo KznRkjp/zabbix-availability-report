@@ -1,7 +1,7 @@
 # Zabbix Availability Report
 
 This project generates availability reports for Zabbix-monitored hosts by querying the Zabbix API for ICMP ping (availability) data and exporting the results to CSV and JSON files.
-Tested on Zabbix 7.4 but should work on other versions as well.
+Tested on Zabbix 7.2 but should work on other versions as well.
 Zabbix built in availability report is slow, can't be date specific and if you have more than 2k hosts and want satistics for a week ore more will never execute. 
 
 ## Features
@@ -28,7 +28,7 @@ pip install -r requirements.txt
 ## Configuration
 
 Set your Zabbix API token and URL in a `.env` file:
-
+How to get token: [Here](https://www.zabbix.com/documentation/current/en/manual/web_interface/frontend_sections/users/api_tokens)
 ```
 ZABBIX_TOKEN=your_zabbix_api_token
 ZABBIX_URL=https://your.zabbix.server/api_jsonrpc.php
@@ -37,8 +37,8 @@ ZABBIX_URL=https://your.zabbix.server/api_jsonrpc.php
 Edit `src/main.py` to adjust the time range and intervals:
 
 ```python
-DATETIME_START = "2025-06-08 00:00"
-DATETIME_END = "2025-06-08 01:00"
+DATETIME_START = "2025-06-08 00:00"  # Year-Month-Day Hour:Minute
+DATETIME_END = "2025-06-08 01:00"  # Year-Month-Day Hour:Minute
 TIME_INTERVALS_TO_CHECK = 1
 ```
 
