@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 ## Configuration
 
-You shpuld get zabbix api token from your zabbix server.
+You should get zabbix api token from your zabbix server.
 
 [Here is the link to the manual](https://www.zabbix.com/documentation/current/en/manual/web_interface/frontend_sections/users/api_tokens)
 
