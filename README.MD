@@ -27,8 +27,12 @@ pip install -r requirements.txt
 
 ## Configuration
 
+You shpuld get zabbix api token from your zabbix server.
+
+[Here is the link to the manual](https://www.zabbix.com/documentation/current/en/manual/web_interface/frontend_sections/users/api_tokens)
+
 Set your Zabbix API token and URL in a `.env` file:
-How to get token: [Here](https://www.zabbix.com/documentation/current/en/manual/web_interface/frontend_sections/users/api_tokens)
+
 ```
 ZABBIX_TOKEN=your_zabbix_api_token
 ZABBIX_URL=https://your.zabbix.server/api_jsonrpc.php
