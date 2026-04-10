@@ -12,9 +12,9 @@ from dotenv import load_dotenv
 from convert import json_to_csv
 
 # --- Configuration ---
-DATETIME_START = "2025-06-08 00:00" # Year-Month-Day Hour:Minute
-DATETIME_END = "2025-06-08 01:00" # Year-Month-Day Hour:Minute
-TIME_INTERVALS_TO_CHECK = 1
+DATETIME_START = "2026-04-01 00:00" # Year-Month-Day Hour:Minute
+DATETIME_END = "2026-04-01 23:59" # Year-Month-Day Hour:Minute
+TIME_INTERVALS_TO_CHECK = 10
 
 # --- Load environment variables ---
 load_dotenv()

@@ -6,7 +6,10 @@ __pycache__/
 
 # C extensions
 *.so
-
+CLAUDE.md
+.venv/
+.env
+*.json
 # Distribution / packaging
 .Python
 build/

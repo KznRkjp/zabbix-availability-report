@@ -31,19 +31,26 @@ You should get zabbix api token from your zabbix server.
 
 [Here is the link to the manual](https://www.zabbix.com/documentation/current/en/manual/web_interface/frontend_sections/users/api_tokens)
 
-Set your Zabbix API token and URL in a `.env` file (rename .env.expample to .env):
+Set your Zabbix API token and URL in a `.env` file (rename .env.example to .env):
 
 ```
 ZABBIX_TOKEN=your_zabbix_api_token
 ZABBIX_URL=https://your.zabbix.server/api_jsonrpc.php
 ```
 
-Edit `src/main.py` to adjust the time range and intervals:
+Edit `src/main.py` to adjust the time range and intervals.
+
+For example, this will create 2 columns: `2025-06-08 00:00` and `2025-06-09 00:00`.
+Each column shows availability for the 00:00–01:00 interval on that date.
+
+`TIME_INTERVALS_TO_CHECK` is responsible for the number of intervals; they grow by day starting from `DATETIME_START`/`DATETIME_END`.
+`DATETIME_START` - start of interval
+`DATETIME_END` - end of interval
 
 ```python
 DATETIME_START = "2025-06-08 00:00"  # Year-Month-Day Hour:Minute
 DATETIME_END = "2025-06-08 01:00"  # Year-Month-Day Hour:Minute
-TIME_INTERVALS_TO_CHECK = 1
+TIME_INTERVALS_TO_CHECK = 2
 ```
 
 ## Usage
@@ -51,6 +58,17 @@ TIME_INTERVALS_TO_CHECK = 1
 Run the main script:
 
 ```bash
+python3 src/main.py
+```
+
+Quick start (minimal):
+
+```bash
+cp .env.example .env
+# Edit .env with real values for ZABBIX_TOKEN and ZABBIX_URL
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 python3 src/main.py
 ```
 
@@ -65,10 +83,10 @@ This will:
 A sample CSV output (`zabbix_availability-25-06-09-12-24-58.csv`):
 
 ```
-host,hostid,icmp_id,2025-06-08 00:00
-HOST-4014431.1,14354,60538,0.9
-HOST-5913081.1,14355,60541,0.08333333333333333
-HOST-6014367.1,14201,60079,0.9666666666666667
+host,hostid,icmp_id,2025-06-08 00:00,2025-06-09 00:00
+HOST-4014431.1,14354,60538,0.9,0.95
+HOST-5913081.1,14355,60541,0.08333333333333333,0.12
+HOST-6014367.1,14201,60079,0.9666666666666667,0.98
 ...
 ```
 
@@ -90,7 +108,7 @@ MIT License
 
 **Example:**
 
-To generate a report for June 8, 2025, 00:00–01:00, run:
+To generate a report run:
 
 ```bash
 python3 src/main.py
